@@ -1,13 +1,5 @@
 <!-- Splash page -->
 <div id="splash">
-	<div id="splash-news">
-			<div id="latest-update">
-			<h1>Latest updates</h1>
-
-			{{> latestLog}}
-		</div>
-	</div>
-
 	<div id="splash-input">
 		<div id="editor-logo">
 			<div id="black">
@@ -27,7 +19,7 @@
 				<div class="sp-np-entry">
 					<input id="size-width-splash" value="{{#if width}}{{width}}{{else}}64{{/if}}" autocomplete="off" />{{svg "x.svg" width="16" height="16" class="dimentions-x"}}<input id="size-height-splash" value="{{#if height}}{{height}}{{else}}64{{/if}}" autocomplete="off" />
 				</div>
-				
+
 				<h2>Palette</h2>
 				<button id="palette-button-splash" class="dropdown-button">Choose a palette...</button>
 				<div id="palette-menu-splash" class="dropdown-menu"><button id="load-palette-button-splash">Load palette...</button></div>
@@ -37,7 +29,7 @@
 					<button id="create-button-splash" class="default">Create</button>
 				</div>
 			</div>
-			
+
 			<div id="sp-quickstart-container">
 				<div id="sp-quickstart-title">
 					Quickstart
@@ -57,11 +49,11 @@
 				</div>
 
 				<div class="mode-switcher">
-					<span class="basic">You are using Basic Mode.</span> 
-					<span class="advanced">You are using Advanced Mode.</span> 
+					<span class="basic">You are using Basic Mode.</span>
+					<span class="advanced">You are using Advanced Mode.</span>
 					<a id="switch-editor-mode-splash" href="#">
-						<span class="basic">Switch to Advanced Mode.</span> 
-						<span class="advanced">Switch to using Basic Mode.</span> 
+						<span class="basic">Switch to Advanced Mode.</span>
+						<span class="advanced">Switch to using Basic Mode.</span>
 						»
 						</a>
 				</div>
