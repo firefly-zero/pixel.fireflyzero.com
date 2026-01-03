@@ -21,8 +21,6 @@ const ColorModule = (() => {
     .addEventListener("input", colorChanged, false);
 
   Events.on("wheel", "colors-menu", resizeSquares);
-  Events.on("click", document.getElementById("cm-add"), addColorButtonEvent);
-  Events.on("click", document.getElementById("cm-remove"), deleteColor, undefined);
   Events.on("click", document.getElementById("cm-zoomin"), resizeSquares, {
     altKey: true,
     deltaY: -1.0,
@@ -141,26 +139,6 @@ const ColorModule = (() => {
       updateCurrentColor(Color.cssToHex(clickedColor));
       //make color selected
       e.target.parentElement.classList.add("selected");
-
-      if (selectedColor === clickedColor) {
-        if (EditorState.getCurrentMode() == "Basic") {
-          e.target.parentElement.lastChild.classList.add("hidden");
-          e.target.jscolor.show();
-        } else {
-          Dialogue.showDialogue("palette-block");
-        }
-      }
-    }
-    //right clicked color
-    else if (e.which == 3) {
-      if (EditorState.getCurrentMode() == "Basic") {
-        //hide edit color button (to prevent it from showing)
-        e.target.parentElement.lastChild.classList.add("hidden");
-        //show color picker
-        e.target.jscolor.show();
-      } else {
-        Dialogue.showDialogue("palette-block");
-      }
     }
   }
 
