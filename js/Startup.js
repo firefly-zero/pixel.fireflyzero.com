@@ -199,20 +199,6 @@ const Startup = (() => {
     Util.setText("palette-button", "Choose a palette...");
   }
 
-  function newFromTemplate(preset, x, y) {
-    DEBUG_ARR.push("called Startup -> newFromTemplate");
-    if (preset != "") {
-      const presetProperties = PresetModule.propertiesOf(preset);
-      Util.setText("palette-button-splash", presetProperties.palette);
-      Util.setText("palette-button", presetProperties.palette);
-
-      x = presetProperties.width;
-      y = presetProperties.height;
-    }
-
-    newPixel(FileManager.defaultLPE(x, y));
-  }
-
   function splashEditorMode(mode) {
     DEBUG_ARR.push("called Startup -> splashEditorMode");
     editorMode = mode;
@@ -221,7 +207,6 @@ const Startup = (() => {
   return {
     create,
     newPixel,
-    newFromTemplate,
     splashEditorMode,
   };
 })();

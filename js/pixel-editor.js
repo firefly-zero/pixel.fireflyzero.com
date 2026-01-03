@@ -56,7 +56,6 @@
 
 /** MODULES AND MENUS **/
 //=include SplashPage.js
-//=include PresetModule.js
 //=include ColorModule.js
 //=include ToolManager.js
 //=include LayerList.js
@@ -69,9 +68,6 @@
 
 /** IHER **/
 //=include FeatureToggles.js
-
-// Controls execution of this preset module
-PresetModule.instrumentPresetMenu();
 
 //when the page is done loading, you can get ready to start
 window.onload = function () {
@@ -120,7 +116,7 @@ window.onload = function () {
           let _lpe = FileManager.defaultLPE(
             width,
             height,
-            (data.colors ?? []).map((n) => "#" + n),
+            (data.colors ?? []).map((n) => "#" + n)
           );
           console.log("_lpe === ", _lpe);
           Startup.newPixel(_lpe);
@@ -145,9 +141,7 @@ window.onload = function () {
       Startup.newPixel(lpe);
     }
     //check if there are any url parameters
-    else if (
-      window.location.pathname.replace("/pixel-editor/", "").length <= 1
-    ) {
+    else if (window.location.pathname.replace("/pixel-editor/", "").length <= 1) {
       //show splash screen
       Dialogue.showDialogue("splash", false);
     }
@@ -175,5 +169,4 @@ if (
 )
   console.log("compatibility check passed");
 //show warning
-else
-  document.getElementById("compatibility-warning").style.visibility = "visible";
+else document.getElementById("compatibility-warning").style.visibility = "visible";
