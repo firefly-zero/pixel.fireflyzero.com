@@ -1,43 +1,43 @@
 const InputComponents = (() => {
-    setInputEvents();
+  setInputEvents();
 
-    function setInputEvents() {
-        // Make the checkboxes toggleable
-        let checkboxes = document.getElementsByClassName("checkbox");
-        for (let i=0; i<checkboxes.length; i++) {
-            Events.on("click", checkboxes[i], toggleBox);
-        }
+  function setInputEvents() {
+    // Make the checkboxes toggleable
+    let checkboxes = document.getElementsByClassName("checkbox");
+    for (let i = 0; i < checkboxes.length; i++) {
+      Events.on("click", checkboxes[i], toggleBox);
     }
+  }
 
-    function toggleBox(event) {
-        if (event.target.classList.contains("checked"))
-            event.target.classList.remove("checked");
-        else
-            event.target.classList.add("checked");
-    }
+  function toggleBox(event) {
+    if (event.target.classList.contains("checked"))
+      event.target.classList.remove("checked");
+    else event.target.classList.add("checked");
+  }
 
-    function createNumber(id, label) {
-        let element = document.createElement("label");
-        let inputEl = document.createElement("input");
+  function createNumber(id, label) {
+    let element = document.createElement("label");
+    let inputEl = document.createElement("input");
 
-        inputEl.id = id;
-        inputEl.type = "number";
-        element.innerHTML = label;
+    inputEl.id = id;
+    inputEl.type = "number";
+    element.innerHTML = label;
 
-        element.appendChild(inputEl);
+    element.appendChild(inputEl);
 
-        return element;
-    }
+    return element;
+  }
 
-    function createCheckbox(id, label) {
-        let element = document.createElement("div");
-        let inner = document.createElement("div");
-        let hiddenInput = document.createElement("input");
-        let box = document.createElement("div");
-        let labelEl = document.createElement("label");
+  function createCheckbox(id, label) {
+    let element = document.createElement("div");
+    let inner = document.createElement("div");
+    let hiddenInput = document.createElement("input");
+    let box = document.createElement("div");
+    let labelEl = document.createElement("label");
 
-        labelEl.innerHTML = label;
-        box.innerHTML = '\
+    labelEl.innerHTML = label;
+    box.innerHTML =
+      '\
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\
              width="405.272px" height="405.272px" viewBox="0 0 405.272 405.272" style="enable-background:new 0 0 405.272 405.272;"\
              xml:space="preserve">\
@@ -48,26 +48,25 @@ const InputComponents = (() => {
         </g>\
         </svg>';
 
-        element.className = "checkbox-holder";
-        inner.className = "checkbox";
-        hiddenInput.type = "hidden";
-        box.className = "box";
-        box.id = id;
+    element.className = "checkbox-holder";
+    inner.className = "checkbox";
+    hiddenInput.type = "hidden";
+    box.className = "box";
+    box.id = id;
 
-        inner.appendChild(labelEl);
-        inner.appendChild(hiddenInput);
-        inner.appendChild(box);
-        element.appendChild(inner);
-        
-    }
+    inner.appendChild(labelEl);
+    inner.appendChild(hiddenInput);
+    inner.appendChild(box);
+    element.appendChild(inner);
+  }
 
-    function updated() {
-        setInputEvents();
-    }
+  function updated() {
+    setInputEvents();
+  }
 
-    return {
-        updated,
-        createCheckbox,
-        createNumber
-    }
+  return {
+    updated,
+    createCheckbox,
+    createNumber,
+  };
 })();

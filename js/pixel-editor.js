@@ -75,79 +75,84 @@ PresetModule.instrumentPresetMenu();
 
 //when the page is done loading, you can get ready to start
 window.onload = function () {
-	// First cursor update
-    ToolManager.currentTool().updateCursor();
-	// Apply checkboxes
+  // First cursor update
+  ToolManager.currentTool().updateCursor();
+  // Apply checkboxes
 
-    ////console.log('window.location.pathname === ',window.location.pathname);
+  ////console.log('window.location.pathname === ',window.location.pathname);
 
-    ////console.log('window.location === ',window.location);
-    let args = window.location.pathname.split('/');
-    let paletteSlug = args[2];
-    let dimensions = args[3];
-    // let prefillWidth = args[4] ?? 9; // TODO
-    // let prefill = args[5] ?? "110101111110100110111100110110101111";
-    // let customColors = args[6] ?? ""; // ex: "#ffffff,#000000"
-    // console.log('prefill === ',prefill);
-    if(paletteSlug && dimensions) {
-
-            //fetch palette via lospec palette API
-            fetch('https://lospec.com/palette-list/'+paletteSlug+'.json')
-                .then(response => response.json())
-                .then(data => {
-                    //palette loaded successfully
-                    palettes[paletteSlug] = data;
-                    palettes[paletteSlug].specified = true;
-                    ////console.log('palettes[paletteSlug] === ',palettes[paletteSlug]);
-                    //refresh list of palettes
-                    document.getElementById('palette-menu-splash').refresh();
-                    console.log('paletteSlug === ',paletteSlug);
-                    console.log('dimensions === ',dimensions);
-                    //if the dimensions were specified
-                    if (dimensions && dimensions.length >= 3 && dimensions.includes('x')) {
-                        let width = dimensions.split('x')[0];
-                        let height = dimensions.split('x')[1];
-                        const layers = [];
-                        let selectedLayer = 0;
-                        // if(prefill && prefillWidth){ // TODO
-                        //     layers.push({
-                        //         id: "layer0",
-                        //         name: "Layer 0",
-                        //         prefillWidth,
-                        //         prefill
-                        //     });
-                        //     selectedLayer = 0;
-                        // }
-                        let _lpe = FileManager.defaultLPE(width, height, (data.colors ?? []).map(n=>"#"+n));
-                        console.log('_lpe === ',_lpe);
-                        Startup.newPixel(_lpe);
-                    }
-                    //dimensions were not specified -- show splash screen with palette preselected
-                    else {
-                        //show splash
-                        Dialogue.showDialogue('new-pixel', false);
-                    }
-                })
-                //error fetching url (either palette doesn't exist, or lospec is down)
-                .catch((error) => {
-                    //console.warn('failed to load palette "'+paletteSlug+'"', error);
-                    //proceed to splash screen
-                    Dialogue.showDialogue('splash', false);
-                });
-    } else {
-        if(FileManager.cacheEnabled && FileManager.localStorageCheck()) {
-            //load cached document
-            const lpe = FileManager.localStorageLoad();
-            
-            Startup.newPixel(lpe);
+  ////console.log('window.location === ',window.location);
+  let args = window.location.pathname.split("/");
+  let paletteSlug = args[2];
+  let dimensions = args[3];
+  // let prefillWidth = args[4] ?? 9; // TODO
+  // let prefill = args[5] ?? "110101111110100110111100110110101111";
+  // let customColors = args[6] ?? ""; // ex: "#ffffff,#000000"
+  // console.log('prefill === ',prefill);
+  if (paletteSlug && dimensions) {
+    //fetch palette via lospec palette API
+    fetch("https://lospec.com/palette-list/" + paletteSlug + ".json")
+      .then((response) => response.json())
+      .then((data) => {
+        //palette loaded successfully
+        palettes[paletteSlug] = data;
+        palettes[paletteSlug].specified = true;
+        ////console.log('palettes[paletteSlug] === ',palettes[paletteSlug]);
+        //refresh list of palettes
+        document.getElementById("palette-menu-splash").refresh();
+        console.log("paletteSlug === ", paletteSlug);
+        console.log("dimensions === ", dimensions);
+        //if the dimensions were specified
+        if (dimensions && dimensions.length >= 3 && dimensions.includes("x")) {
+          let width = dimensions.split("x")[0];
+          let height = dimensions.split("x")[1];
+          const layers = [];
+          let selectedLayer = 0;
+          // if(prefill && prefillWidth){ // TODO
+          //     layers.push({
+          //         id: "layer0",
+          //         name: "Layer 0",
+          //         prefillWidth,
+          //         prefill
+          //     });
+          //     selectedLayer = 0;
+          // }
+          let _lpe = FileManager.defaultLPE(
+            width,
+            height,
+            (data.colors ?? []).map((n) => "#" + n),
+          );
+          console.log("_lpe === ", _lpe);
+          Startup.newPixel(_lpe);
         }
-        //check if there are any url parameters
-        else if (window.location.pathname.replace('/pixel-editor/','').length <= 1)  {
-            //show splash screen
-            Dialogue.showDialogue('splash', false);
+        //dimensions were not specified -- show splash screen with palette preselected
+        else {
+          //show splash
+          Dialogue.showDialogue("new-pixel", false);
         }
+      })
+      //error fetching url (either palette doesn't exist, or lospec is down)
+      .catch((error) => {
+        //console.warn('failed to load palette "'+paletteSlug+'"', error);
+        //proceed to splash screen
+        Dialogue.showDialogue("splash", false);
+      });
+  } else {
+    if (FileManager.cacheEnabled && FileManager.localStorageCheck()) {
+      //load cached document
+      const lpe = FileManager.localStorageLoad();
+
+      Startup.newPixel(lpe);
     }
-}
+    //check if there are any url parameters
+    else if (
+      window.location.pathname.replace("/pixel-editor/", "").length <= 1
+    ) {
+      //show splash screen
+      Dialogue.showDialogue("splash", false);
+    }
+  }
+};
 
 //prevent user from leaving page with unsaved data
 // window.onbeforeunload = function() {
@@ -159,15 +164,16 @@ window.onload = function () {
 
 // Compatibility functions
 function closeCompatibilityWarning() {
-	document.getElementById("compatibility-warning").style.visibility =	"hidden";
+  document.getElementById("compatibility-warning").style.visibility = "hidden";
 }
 
 //check browser/version
 if (
-	(bowser.firefox && bowser.version >= 28) ||
-	(bowser.chrome && bowser.version >= 29) ||
-	(!bowser.mobile && !bowser.tablet)
+  (bowser.firefox && bowser.version >= 28) ||
+  (bowser.chrome && bowser.version >= 29) ||
+  (!bowser.mobile && !bowser.tablet)
 )
-	console.log("compatibility check passed");
+  console.log("compatibility check passed");
 //show warning
-else document.getElementById("compatibility-warning").style.visibility = "visible";
+else
+  document.getElementById("compatibility-warning").style.visibility = "visible";

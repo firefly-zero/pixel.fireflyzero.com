@@ -8,34 +8,33 @@ const nameToModule = {};
 const cache = {};
 
 module.exports = function (name, opts) {
-	name = path + name;
+  name = path + name;
 
-	const mod =
-		nameToModule[name] ||
-		(nameToModule[name] = resolve.sync(name, {
-			extensions: [".svg"],
-		}));
+  const mod =
+    nameToModule[name] ||
+    (nameToModule[name] = resolve.sync(name, {
+      extensions: [".svg"],
+    }));
 
-	const content =
-		cache[name] || (cache[name] = fs.readFileSync(mod, "utf-8"));
+  const content = cache[name] || (cache[name] = fs.readFileSync(mod, "utf-8"));
 
-	const svg = parse(content);
+  const svg = parse(content);
 
-	Object.assign(svg.attrs, opts.hash);
+  Object.assign(svg.attrs, opts.hash);
 
-	return new handlebars.SafeString(svg.root().toString());
+  return new handlebars.SafeString(svg.root().toString());
 };
 
 module.exports.cache = cache;
 
 function parse(xml, mod) {
-	const svg = ltx.parse(xml);
-	if (svg.name != "svg") {
-		throw new TypeError("Input must be an SVG");
-	}
+  const svg = ltx.parse(xml);
+  if (svg.name != "svg") {
+    throw new TypeError("Input must be an SVG");
+  }
 
-	delete svg.attrs.xmlns;
-	delete svg.attrs["xmlns:xlink"];
+  delete svg.attrs.xmlns;
+  delete svg.attrs["xmlns:xlink"];
 
-	return svg;
+  return svg;
 }

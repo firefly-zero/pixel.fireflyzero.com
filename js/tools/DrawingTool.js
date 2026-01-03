@@ -1,5 +1,5 @@
 class DrawingTool extends Tool {
-    constructor (name, options) {
-        super(name, options);
-    }
+  constructor(name, options) {
+    super(name, options);
+  }
 }
