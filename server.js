@@ -35,10 +35,10 @@ app.use(
   })
 );
 
-//ROUTE - match / or any route with just numbers letters and dashes, and return index.htm (all other routes should have been handled already)
+//ROUTE - match / or any route with just numbers letters and dashes, and return index.html (all other routes should have been handled already)
 app.get("/", (req, res, next) => {
   ////console.log('root')
-  res.sendFile(path.join(__dirname, BUILDDIR, "index.htm"), {}, function (err) {
+  res.sendFile(path.join(__dirname, BUILDDIR, "index.html"), {}, function (err) {
     ////console.log('sent file');
     return next();
   });

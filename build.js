@@ -63,7 +63,7 @@ function compile_page() {
           layout: false,
         })
     )
-    .pipe(rename("index.htm"))
+    .pipe(rename("index.html"))
     .pipe(gulp.dest(BUILDDIR));
 }
 
