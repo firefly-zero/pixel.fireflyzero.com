@@ -68,7 +68,6 @@ palettes = {
 (() => {
   const palettesMenu = document.getElementById("palette-menu");
   const splashPalettes = document.getElementById("palette-menu-splash");
-  const noPaletteButton = document.getElementById("no-palette-button");
   const newPixelElement = document.getElementById("new-pixel");
   const paletteButton = document.getElementById("palette-button");
   const paletteButtonSplash = document.getElementById("palette-button-splash");
@@ -84,8 +83,6 @@ palettes = {
       if (palettes[paletteName].specified) {
         Util.setText("palette-button", paletteName);
         Util.setText("palette-button-splash", paletteName);
-        //Show empty palette option
-        noPaletteButton.style.display = "block";
       }
 
       const buttonEvent = () => {
@@ -94,9 +91,6 @@ palettes = {
         Util.deselect("palette-button");
         Util.deselect("palette-menu-splash");
         Util.deselect("palette-button-splash");
-
-        //show empty palette option
-        noPaletteButton.style.display = "block";
 
         //set the text of the dropdown to the newly selected preset
         Util.setText("palette-button", paletteName);
@@ -136,11 +130,6 @@ palettes = {
   // Palette menu click
   paletteButtonSplash.addEventListener("click", clickPaletteButtonEvent);
   paletteButton.addEventListener("click", clickPaletteButtonEvent);
-
-  noPaletteButton.addEventListener("click", () => {
-    noPaletteButton.style.display = "none";
-    Util.setText("palette-button", "SWEETIE-16");
-  });
 
   newPixelElement.addEventListener("click", () => {
     Util.deselect("palette-button");
