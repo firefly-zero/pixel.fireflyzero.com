@@ -197,7 +197,6 @@ const Startup = (() => {
     Util.setValue("size-height", 64);
 
     Util.setText("palette-button", "Choose a palette...");
-    Util.setText("preset-button", "Choose a preset...");
   }
 
   function newFromTemplate(preset, x, y) {

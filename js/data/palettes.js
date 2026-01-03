@@ -123,9 +123,6 @@ palettes = {
     Util.toggle("palette-button");
     Util.toggle("palette-menu");
 
-    Util.deselect("preset-button");
-    Util.deselect("preset-menu");
-
     // Splash version
     Util.toggle("palette-button-splash");
     Util.toggle("palette-menu-splash");
@@ -146,8 +143,6 @@ palettes = {
   });
 
   newPixelElement.addEventListener("click", () => {
-    Util.deselect("preset-button");
-    Util.deselect("preset-menu");
     Util.deselect("palette-button");
     Util.deselect("palette-menu");
 
