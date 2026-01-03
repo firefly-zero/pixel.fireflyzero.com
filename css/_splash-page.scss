@@ -125,6 +125,7 @@
       .advanced {
         display: none;
       }
+
       &.advanced-mode {
         .basic {
           display: none;
@@ -222,8 +223,10 @@
     box-sizing: border-box;
     /* Opera/IE 8+ */
     display: inline-block;
+    margin-left: 35%;
+    margin-top: 20vh;
     width: 30% !important;
-    height: 65vh;
+    height: 60vh;
     padding: 20px;
     position: relative;
     background-color: $basecolor;
@@ -294,43 +297,6 @@
           background-color: $basetextweak;
         }
       }
-    }
-  }
-
-  #latest-update {
-    width: 100%;
-    font-size: 15px;
-    height: 90%;
-    line-height: 1.5;
-    position: relative;
-    top: 20px;
-    padding: 0 1.5em;
-
-    overflow-y: scroll;
-    box-sizing: border-box;
-
-    img {
-      width: 100%;
-    }
-
-    &::-webkit-scrollbar {
-      background: #232125;
-      width: 0.5em;
-    }
-
-    &::-webkit-scrollbar-track {
-      margin-top: -0.125em;
-      width: 0.5em;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #332f35;
-      border-radius: 0.25em;
-      border: solid 0.125em #232125; //same color as scrollbar back to fake padding
-    }
-
-    &::-webkit-scrollbar-corner {
-      background: #232125;
     }
   }
 }
