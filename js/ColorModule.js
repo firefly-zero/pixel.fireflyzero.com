@@ -19,18 +19,10 @@ const ColorModule = (() => {
   document
     .getElementById("jscolor-hex-input")
     .addEventListener("input", colorChanged, false);
-  document
-    .getElementById("add-color-button")
-    .addEventListener("click", addColorButtonEvent);
 
   Events.on("wheel", "colors-menu", resizeSquares);
   Events.on("click", document.getElementById("cm-add"), addColorButtonEvent);
-  Events.on(
-    "click",
-    document.getElementById("cm-remove"),
-    deleteColor,
-    undefined,
-  );
+  Events.on("click", document.getElementById("cm-remove"), deleteColor, undefined);
   Events.on("click", document.getElementById("cm-zoomin"), resizeSquares, {
     altKey: true,
     deltaY: -1.0,
@@ -53,10 +45,7 @@ const ColorModule = (() => {
   function resizeSquares(event) {
     if (!event.altKey) return;
 
-    squareSize = Math.max(
-      minSquareSize,
-      squareSize - 3 * Math.sign(event.deltaY),
-    );
+    squareSize = Math.max(minSquareSize, squareSize - 3 * Math.sign(event.deltaY));
 
     for (let i = 0; i < colorsMenu.children.length; i++) {
       colorsMenu.children[i].style.width = squareSize + "px";
@@ -84,17 +73,11 @@ const ColorModule = (() => {
     newColor.a = 255;
 
     //save undo state
-    new HistoryState().EditColor(
-      hexElementValue.toLowerCase(),
-      Color.rgbToHex(oldColor),
-    );
+    new HistoryState().EditColor(hexElementValue.toLowerCase(), Color.rgbToHex(oldColor));
 
     //get the currently selected color
-    const currentlyEditedColor =
-      document.getElementsByClassName("jscolor-active")[0];
-    const duplicateColorWarning = document.getElementById(
-      "duplicate-color-warning",
-    );
+    const currentlyEditedColor = document.getElementsByClassName("jscolor-active")[0];
+    const duplicateColorWarning = document.getElementById("duplicate-color-warning");
 
     //check if selected color already matches another color
     colors = document.getElementsByClassName("color-button");
@@ -147,14 +130,12 @@ const ColorModule = (() => {
     if (e.which == 1) {
       // remove current color selection
       const currentSelectedColorButton = document.querySelector(
-        "#colors-menu li.selected .color-button",
+        "#colors-menu li.selected .color-button"
       );
       const selectedColor = currentSelectedColorButton.style.backgroundColor;
       const clickedColor = e.target.style.backgroundColor;
 
-      document
-        .querySelector("#colors-menu li.selected")
-        ?.classList.remove("selected");
+      document.querySelector("#colors-menu li.selected")?.classList.remove("selected");
 
       //set current color
       updateCurrentColor(Color.cssToHex(clickedColor));
@@ -192,7 +173,7 @@ const ColorModule = (() => {
       "hsv",
       Math.floor(Math.random() * 360),
       Math.floor(Math.random() * 100),
-      Math.floor(Math.random() * 100),
+      Math.floor(Math.random() * 100)
     ).hex;
 
     //add new color and make it selected
@@ -200,18 +181,14 @@ const ColorModule = (() => {
     addedColor.classList.add("selected");
 
     //remove previous color selection
-    document
-      .querySelector("#colors-menu li.selected")
-      ?.classList.remove("selected");
+    document.querySelector("#colors-menu li.selected")?.classList.remove("selected");
 
     addedColor.style.width = squareSize + "px";
     addedColor.style.height = squareSize + "px";
     updateCurrentColor(newColor);
 
     //add history state
-    new HistoryState().AddColor(
-      addedColor.firstElementChild.jscolor.toString(),
-    );
+    new HistoryState().AddColor(addedColor.firstElementChild.jscolor.toString());
   }
 
   /** Adds the colors that have been added through the advanced-mode color picker to the
@@ -284,15 +261,14 @@ const ColorModule = (() => {
     //insert new listItem element at the end of the colors menu (right before add button)
     colorsMenu.insertBefore(
       listItem,
-      colorsMenu.children[colorsMenu.children.length - 1],
+      colorsMenu.children[colorsMenu.children.length - 1]
     );
 
     //add jscolor functionality
     initColor(button);
 
     //add edit button
-    const editButtonTemplate =
-      document.getElementsByClassName("color-edit-button")[0];
+    const editButtonTemplate = document.getElementsByClassName("color-edit-button")[0];
     newEditButton = editButtonTemplate.cloneNode(true);
     listItem.appendChild(newEditButton);
 
@@ -367,7 +343,7 @@ const ColorModule = (() => {
     //replace deleted color with lightest color
     ColorModule.replaceAllOfColor(
       color.jscolor.toString(),
-      lightestColor[1].jscolor.toString(),
+      lightestColor[1].jscolor.toString()
     );
 
     //if the color you are deleting is the currently selected color
@@ -396,7 +372,7 @@ const ColorModule = (() => {
       0,
       0,
       currFile.canvasSize[0],
-      currFile.canvasSize[1],
+      currFile.canvasSize[1]
     );
 
     //loop through all pixels
@@ -422,7 +398,7 @@ const ColorModule = (() => {
     let ret = [...currentPalette];
     if (ret.length === 0) {
       ret = [...document.querySelectorAll(".color-button")].map(
-        (n) => n.style.backgroundColor,
+        (n) => n.style.backgroundColor
       );
     }
     return ret;
@@ -464,9 +440,7 @@ const ColorModule = (() => {
         darkestColorRgb.r + darkestColorRgb.g + darkestColorRgb.b
       ) {
         //remove current color selection
-        document
-          .querySelector("#colors-menu li.selected")
-          ?.classList.remove("selected");
+        document.querySelector("#colors-menu li.selected")?.classList.remove("selected");
 
         //set as current color
         newColorElement.classList.add("selected");
@@ -475,8 +449,7 @@ const ColorModule = (() => {
     }
 
     //prepend # if not present
-    if (!darkestColor.hex.includes("#"))
-      darkestColor.hex = "#" + darkestColor.hex;
+    if (!darkestColor.hex.includes("#")) darkestColor.hex = "#" + darkestColor.hex;
 
     //set as current color
     updateCurrentColor(darkestColor.hex);
@@ -525,41 +498,33 @@ const ColorModule = (() => {
           0,
           0,
           currFile.canvasSize[0],
-          currFile.canvasSize[1],
+          currFile.canvasSize[1]
         ).data;
         let dataLength = imageData.length;
 
         for (let j = 0; j < dataLength; j += 4) {
           if (!Util.isPixelEmpty(imageData[j])) {
-            let color =
-              imageData[j] + "," + imageData[j + 1] + "," + imageData[j + 2];
+            let color = imageData[j] + "," + imageData[j + 1] + "," + imageData[j + 2];
 
             if (!colors[color]) {
               colorPaletteArray.push(
                 "#" +
-                  new Color(
-                    "rgb",
-                    imageData[j],
-                    imageData[j + 1],
-                    imageData[j + 2],
-                  ).hex,
+                  new Color("rgb", imageData[j], imageData[j + 1], imageData[j + 2]).hex
               );
               colors[color] = new Color(
                 "rgb",
                 imageData[j],
                 imageData[j + 1],
-                imageData[j + 2],
+                imageData[j + 2]
               ).rgb;
               nColors++;
 
               //don't allow more than 256 colors to be added
-              if (
-                nColors >= Settings.getCurrSettings().maxColorsOnImportedImage
-              ) {
+              if (nColors >= Settings.getCurrSettings().maxColorsOnImportedImage) {
                 alert(
                   "The image loaded seems to have more than " +
                     Settings.getCurrSettings().maxColorsOnImportedImage +
-                    " colors.",
+                    " colors."
                 );
                 break;
               }
@@ -590,7 +555,7 @@ const ColorModule = (() => {
 
   function getSelectedColor() {
     const currentSelectedColorButton = document.querySelector(
-      "#colors-menu li.selected .color-button",
+      "#colors-menu li.selected .color-button"
     );
     return currentSelectedColorButton.jscolor.toString();
   }
