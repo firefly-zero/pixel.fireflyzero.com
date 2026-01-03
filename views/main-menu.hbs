@@ -1,5 +1,5 @@
 <ul id="main-menu" class="editor-top-menu">
-	<li class="logo">Lospec Pixel Editor</li>
+	<li class="logo">Pixel</li>
 	<li>
 		<button>File</button>
 		<ul>
@@ -20,12 +20,6 @@
 			<li><button onclick = "currFile.trimCanvas()">Trim canvas</button></li>
 			<li><button id="undo-button" class="disabled">Undo</button></li>
 			<li><button id="redo-button" class="disabled">Redo</button></li>
-		</ul>
-	</li>
-	<li>
-		<button>View</button>
-		<ul>
-			<li><button id="toggle-pixelgrid-button" onclick="currFile.pixelGrid.togglePixelGrid()">Show pixel grid</button></li>
 		</ul>
 	</li>
 	<li>
@@ -52,6 +46,7 @@
 	<li>
 		<button>Editor</button>
 		<ul>
+			<li><button id="toggle-pixelgrid-button" onclick="currFile.pixelGrid.togglePixelGrid()">Show pixel grid</button></li>
 			<li><button id="switch-mode-button">Switch to basic mode</button></li>
 			<li><button onclick="Dialogue.showDialogue('splash', false)">Start page</button></li>
 			<li><button id="auto-cache-button" onclick="FileManager.toggleCache(this)">Enable auto-cache</button></li>
