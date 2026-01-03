@@ -1,38 +1,37 @@
-
 #new-pixel-warning {
-	display: none;
-	text-align: center;
-	margin: 20px 0 0;
-	font-style: italic;
+  display: none;
+  text-align: center;
+  margin: 20px 0 0;
+  font-style: italic;
 }
 
 #new-pixel-inventory {
-	display: none;
+  display: none;
 }
 
 #new-pixel-map {
-	display: none;
+  display: none;
 }
 
 #new-voxel-world {
-	display: none;
+  display: none;
 }
 
 .dimentions-x {
-	margin: -2px 7px;
-	path {
-		fill: $baseicon
-	}
+  margin: -2px 7px;
+  path {
+    fill: $baseicon;
+  }
 }
 
 #no-palette-button {
-	display: none;
+  display: none;
 }
 
 #editor-mode-info {
-	font-style: italic;
+  font-style: italic;
 }
 
 #editor-mode {
-	display: none;
+  display: none;
 }

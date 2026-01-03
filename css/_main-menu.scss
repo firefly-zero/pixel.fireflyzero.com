@@ -1,139 +1,137 @@
-
 #main-menu {
-	height: var(--top-nav-height);
-	left: 0;
-	right: 0;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	background-color: $basecolor;
-	position: fixed;
-	z-index: 1110;
-	overflow: visible;
-	&>li {
-		float: left;
-		height: 100%;
-	}
-	li button,
-	li a {
-		color: $basetext;
-		height: 100%;
-		padding: 17px;
-		background: none;
-		border: none;
-		cursor: pointer;
-	}
-	li.selected {
-		background-color: $basehover;
-		&>button {
-			color: $basehovertext;
-		}
-		ul {
-			display: block;
-		}
-	}
-	li ul {
-		display: none;
-		position: absolute;
-		top: var(--top-nav-height);
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-		background-color: $basehover;
-		box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5);
-		padding-bottom: 2px;
-		li {
-			width: 100%;
-			button,
-			a {
-				width: 100%;
-				text-align: left;
-				padding: 8px 32px 8px 16px;
-				font-size: 1em;
-				&:hover {
-					background-color: $baseselected;
-					color: $baseselectedtext;
-				}
-			}
-			a {
-				display: block;
-				text-decoration: none;
-				box-sizing: border-box;
-			}
-		}
-	}
-	.disabled {
-		color: #6f6e70 !important;
-	}
+  height: var(--top-nav-height);
+  left: 0;
+  right: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: $basecolor;
+  position: fixed;
+  z-index: 1110;
+  overflow: visible;
+  & > li {
+    float: left;
+    height: 100%;
+  }
+  li button,
+  li a {
+    color: $basetext;
+    height: 100%;
+    padding: 17px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  li.selected {
+    background-color: $basehover;
+    & > button {
+      color: $basehovertext;
+    }
+    ul {
+      display: block;
+    }
+  }
+  li ul {
+    display: none;
+    position: absolute;
+    top: var(--top-nav-height);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: $basehover;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5);
+    padding-bottom: 2px;
+    li {
+      width: 100%;
+      button,
+      a {
+        width: 100%;
+        text-align: left;
+        padding: 8px 32px 8px 16px;
+        font-size: 1em;
+        &:hover {
+          background-color: $baseselected;
+          color: $baseselectedtext;
+        }
+      }
+      a {
+        display: block;
+        text-decoration: none;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .disabled {
+    color: #6f6e70 !important;
+  }
 }
-
-
 
 /* app title */
 
 .logo {
-	color: lighten($basecolor, 20%);
-	text-transform: uppercase;
-	font-weight: bold;
-	padding: 17px 10px 0;
-	cursor: default;
-	box-sizing: border-box;
+  color: lighten($basecolor, 20%);
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 17px 10px 0;
+  cursor: default;
+  box-sizing: border-box;
 }
 
-#main-menu li.open, #main-menu li button:hover {
-	background: $basehover;
+#main-menu li.open,
+#main-menu li button:hover {
+  background: $basehover;
 }
 
 /* Editor info */
 li#editor-info {
-	float:right;
-	height:100%;
-	display:flex;
-	align-items: center;
-	background-color: $basecolor;
-	color:$basetext;
+  float: right;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: $basecolor;
+  color: $basetext;
 
-	ul {
-		background-color: $basecolor;
-		display:block;
-		position:relative;
-		top:0px;
-		padding-top:0px;
-		box-shadow: none;
-		padding-bottom: 0px;
+  ul {
+    background-color: $basecolor;
+    display: block;
+    position: relative;
+    top: 0px;
+    padding-top: 0px;
+    box-shadow: none;
+    padding-bottom: 0px;
 
-		li {
-			top:0px;
-			padding-top:0px;
-			display:inline;
-			padding-right:20px;
-		}
+    li {
+      top: 0px;
+      padding-top: 0px;
+      display: inline;
+      padding-right: 20px;
+    }
 
-		.checkbox-holder {
-			display: inline;
-		}
+    .checkbox-holder {
+      display: inline;
+    }
 
-		input {
-			margin-left:10px;
-			background-color:darken($basecolor, 6%);
-			box-shadow:none;
-			border:none;
-			vertical-align: middle;
-			border-radius:5px;
-			padding: 5px;
-			color:$basetext;
-		}
-		input[type=number] {
-			appearance:none;
-			-moz-appearance:textfield;
-			-webkit-appearance:text;
-			width:25px;
-			height:15px;
-		}
-		input::-webkit-outer-spin-button,
-		input::-webkit-inner-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
-	}
+    input {
+      margin-left: 10px;
+      background-color: darken($basecolor, 6%);
+      box-shadow: none;
+      border: none;
+      vertical-align: middle;
+      border-radius: 5px;
+      padding: 5px;
+      color: $basetext;
+    }
+    input[type="number"] {
+      appearance: none;
+      -moz-appearance: textfield;
+      -webkit-appearance: text;
+      width: 25px;
+      height: 15px;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
 }

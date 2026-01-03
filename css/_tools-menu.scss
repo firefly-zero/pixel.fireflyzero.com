@@ -1,167 +1,167 @@
-
 #tools-menu {
-	left: 0;
-	width: var(--top-nav-height);
-	list-style-type: none;
-	top: var(--top-nav-height);
-	bottom: 0;
-	padding: 0;
-	margin: 0;
-	background-color: $basecolor;
-	box-sizing: border-box;
-	position: fixed;
-	z-index: 1108;
+  left: 0;
+  width: var(--top-nav-height);
+  list-style-type: none;
+  top: var(--top-nav-height);
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  background-color: $basecolor;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 1108;
 }
 
 #tools-menu li {
-	position: relative;
+  position: relative;
 }
 
 #tools-menu li button:first-child {
-	text-align: center;
-	border: none;
-	background: none;
-	width: 100%;
-	padding: 0;
-	cursor: pointer;
-	height: var(--top-nav-height);
-	z-index:0;
+  text-align: center;
+  border: none;
+  background: none;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+  height: var(--top-nav-height);
+  z-index: 0;
 }
 
-#tools-menu li button path, #tools-menu li button ellipse {
-	fill: $baseicon;
-	stroke: $baseicon;
+#tools-menu li button path,
+#tools-menu li button ellipse {
+  fill: $baseicon;
+  stroke: $baseicon;
 }
 
-#tools-menu li:hover button:first-child path, #tools-menu li:hover button:first-child ellipse {
-	fill: $basehovericon;
-	stroke: $basehovericon;
+#tools-menu li:hover button:first-child path,
+#tools-menu li:hover button:first-child ellipse {
+  fill: $basehovericon;
+  stroke: $basehovericon;
 }
-
 
 #tools-menu li.selected {
-	background: $baseselected !important;
+  background: $baseselected !important;
 }
 
-#tools-menu li.selected button:first-child path, #tools-menu li.selected button:first-child ellipse {
-	fill: $baseselectedicon;
+#tools-menu li.selected button:first-child path,
+#tools-menu li.selected button:first-child ellipse {
+  fill: $baseselectedicon;
 }
 
 .tools-menu-sub-button {
-	text-align: center;
-	border: none;
-	background: none;
-	cursor: pointer;
-	width: 22px !important;
-	height:24px !important;
-	display: inline-block;
-	line-height: 0;
-	overflow: hidden;
-	position: relative;
+  text-align: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 22px !important;
+  height: 24px !important;
+  display: inline-block;
+  line-height: 0;
+  overflow: hidden;
+  position: relative;
 
-	path {
-		fill: $baseselectedicon !important;
-	}
-	&:hover {
-		background: $baseselectedhover !important;
-		path {
-			fill: $baseselectediconhover !important;
-		}
-	}
+  path {
+    fill: $baseselectedicon !important;
+  }
+  &:hover {
+    background: $baseselectedhover !important;
+    path {
+      fill: $baseselectediconhover !important;
+    }
+  }
 }
 
 #tools-menu .size-buttons {
-	position:absolute;
-	display: none;
-	height:var(--top-nav-height);
-	left:8px;
-	z-index:-1;
-	background-color: $basecolor !important;
+  position: absolute;
+  display: none;
+  height: var(--top-nav-height);
+  left: 8px;
+  z-index: -1;
+  background-color: $basecolor !important;
 }
 
 #tools-menu .size-buttons button {
-	text-align: center;
-	border: none;
-	padding: 0;
-	position: relative;
-	height:24px;
-	background-color: $baseselected !important;
-	cursor: pointer;
-	display:inline-block;
-	line-height: 0;
-	overflow: hidden;
-	width:22px;
+  text-align: center;
+  border: none;
+  padding: 0;
+  position: relative;
+  height: 24px;
+  background-color: $baseselected !important;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 0;
+  overflow: hidden;
+  width: 22px;
 }
 
 #tools-menu .size-buttons button:hover {
-	background:$baseselected !important;
+  background: $baseselected !important;
 }
 
 #tools-menu .size-buttons button:active {
-	background:$basehovericon !important;
+  background: $basehovericon !important;
 }
 
 #tools-menu li.selected .size-buttons {
-	display:inline-block;
+  display: inline-block;
 }
 
-
 #tools-menu li:hover {
-	background: $basehover;
+  background: $basehover;
 }
 
 @keyframes fadeIn {
-	to {
-		opacity: 1;
-	}
+  to {
+    opacity: 1;
+  }
 }
 @keyframes fadeOut {
-	to {
-		opacity: 0;
-	}
+  to {
+    opacity: 0;
+  }
 }
 
 .fade-in {
-	opacity: 0;
-	animation: fadeIn .1s forwards;
+  opacity: 0;
+  animation: fadeIn 0.1s forwards;
 }
 
 .fade-out {
-	animation: fadeOut .1s forwards;
-    display: none !important;
-    /* TODO: Search Google for: "How to fade out and then set display none" */
+  animation: fadeOut 0.1s forwards;
+  display: none !important;
+  /* TODO: Search Google for: "How to fade out and then set display none" */
 }
 
 .is-paused {
-	animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 /* Tool tutorial */
 #tool-tutorial {
-	display:inline-block;
-	position:absolute;
-	margin-left:var(--top-nav-height);
-	margin-top:var(--top-nav-height);
-	background-color: $basehover;
-	color:$basetext;
-	font-size:14px;
-	width:22%;
-	border-radius:0 5px 5px 5px;
-	z-index:1000;
-	
-	img {
-		width:100%;
-	}
+  display: inline-block;
+  position: absolute;
+  margin-left: var(--top-nav-height);
+  margin-top: var(--top-nav-height);
+  background-color: $basehover;
+  color: $basetext;
+  font-size: 14px;
+  width: 22%;
+  border-radius: 0 5px 5px 5px;
+  z-index: 1000;
 
-	h3 {
-		margin-left:20px;
-		margin-bottom:-5px;
-	}
+  img {
+    width: 100%;
+  }
+
+  h3 {
+    margin-left: 20px;
+    margin-bottom: -5px;
+  }
 }
 
 #tool-tutorial:after {
-	border-left: 11px solid #222;
-	border-top: 8px solid transparent;
-	border-bottom: 8px solid transparent;
-	position: relative;
+  border-left: 11px solid #222;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  position: relative;
 }

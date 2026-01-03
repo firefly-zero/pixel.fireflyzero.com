@@ -1,6 +1,5 @@
 // this function is used whenever you need to define a z-index
 @function -z($key, $mod: 0) {
-
   $index: -index($layers, $key) * 10;
 
   @if $mod {
@@ -20,7 +19,6 @@
 
   @return null;
 }
-
 
 /*
 
