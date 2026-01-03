@@ -182,8 +182,7 @@ const Startup = (() => {
       ColorModule.createColorPalette(palettes["Loaded palette"].colors);
     } else {
       //if this palette isnt the one specified in the url, then reset the url
-      if (!palettes[selectedPalette].specified)
-        history.pushState(null, null, "/pixel-editor");
+      if (!palettes[selectedPalette].specified) history.pushState(null, null, "/");
 
       //fill the palette with specified colours
       ColorModule.createColorPalette(palettes[selectedPalette].colors);
