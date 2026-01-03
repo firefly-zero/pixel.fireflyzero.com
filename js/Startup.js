@@ -26,7 +26,7 @@ const Startup = (() => {
         "event",
         "Pixel Editor New",
         selectedPalette,
-        width + "/" + height,
+        width + "/" + height
       ); /*global ga*/
   }
 
@@ -96,7 +96,7 @@ const Startup = (() => {
         height,
         `pixel-canvas`,
         "",
-        "layer-li-template",
+        "layer-li-template"
       );
       currFile.sublayers.push(currFile.currentLayer);
 
@@ -108,15 +108,10 @@ const Startup = (() => {
         let layerImage = layerData.src;
         if (layerData != null) {
           // Setting id
-          let createdLayer = LayerList.addLayer(
-            layerData.id,
-            false,
-            layerData.name,
-          );
+          let createdLayer = LayerList.addLayer(layerData.id, false, layerData.name);
           if (i === selectedIdx) createdLayer.selectLayer();
           // Setting name
-          createdLayer.menuEntry.getElementsByTagName("p")[0].innerHTML =
-            layerData.name;
+          createdLayer.menuEntry.getElementsByTagName("p")[0].innerHTML = layerData.name;
 
           // Adding the image (I can do that because they're sorted by increasing z-index)
           let img = new Image();
@@ -143,15 +138,10 @@ const Startup = (() => {
       const defaultLayerId = "layer0";
       const defaultLayerName = "Layer 0";
 
-      let createdLayer = LayerList.addLayer(
-        defaultLayerId,
-        false,
-        defaultLayerName,
-      );
+      let createdLayer = LayerList.addLayer(defaultLayerId, false, defaultLayerName);
       createdLayer.selectLayer();
       // Setting name
-      createdLayer.menuEntry.getElementsByTagName("p")[0].innerHTML =
-        defaultLayerName;
+      createdLayer.menuEntry.getElementsByTagName("p")[0].innerHTML = defaultLayerName;
     }
 
     // Adding the checkerboard behind it
@@ -185,38 +175,18 @@ const Startup = (() => {
     }
 
     // If the user selected a palette and isn't opening a file, I load the selected palette
-    if (selectedPalette != "Choose a palette...") {
-      if (selectedPalette === "Loaded palette") {
-        ColorModule.createColorPalette(palettes["Loaded palette"].colors);
-      } else {
-        //if this palette isnt the one specified in the url, then reset the url
-        if (!palettes[selectedPalette].specified)
-          history.pushState(null, null, "/pixel-editor");
-
-        //fill the palette with specified colours
-        ColorModule.createColorPalette(palettes[selectedPalette].colors);
-      }
+    if (selectedPalette == "Choose a palette...") {
+      selectedPalette = "SWEETIE-16";
     }
-    // Otherwise, I just generate 2 semirandom colours
-    else {
-      //this wasn't a specified palette, so reset the url
-      history.pushState(null, null, "/pixel-editor");
+    if (selectedPalette === "Loaded palette") {
+      ColorModule.createColorPalette(palettes["Loaded palette"].colors);
+    } else {
+      //if this palette isnt the one specified in the url, then reset the url
+      if (!palettes[selectedPalette].specified)
+        history.pushState(null, null, "/pixel-editor");
 
-      //generate default colors
-      var fg = new Color("hsv", Math.floor(Math.random() * 360), 50, 50).rgb;
-      var bg = new Color("hsv", Math.floor(Math.random() * 360), 80, 100).rgb;
-
-      //convert colors to hex
-      var defaultForegroundColor = Color.rgbToHex(fg);
-      var defaultBackgroundColor = Color.rgbToHex(bg);
-
-      //add colors to palette
-      ColorModule.addColor(defaultForegroundColor).classList.add("selected");
-      ColorModule.addColor(defaultBackgroundColor);
-
-      //set current drawing color as foreground color
-      ColorModule.updateCurrentColor("#" + defaultForegroundColor);
-      selectedPalette = "none";
+      //fill the palette with specified colours
+      ColorModule.createColorPalette(palettes[selectedPalette].colors);
     }
   }
 
